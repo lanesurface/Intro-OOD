@@ -5,18 +5,28 @@
 
 \title{An Introduction to Object-Oriented Design}
 \author{Lane W. Surface}
-\date{4 March 2019}
+\date{April 2019}
 
 % \geometry{a5paper}
 
 \begin{document}
 
 \pagenumbering{gobble}
-\maketitle
+\begin{center}
+\vspace*{1.5cm}
+\LARGE
+\textbf{An Introduction to Object-Oriented Design}
+
+\vspace{0.75cm}
+\large
+Lane W. Surface 
+
+\vspace{0.35cm}
+April 2019
+\end{center}
 
 \newpage
 \pagenumbering{arabic}
-
 \noindent
 \textsf{
 Among many of the frameworks, APIs, languages, and other skill sets you will be
@@ -65,7 +75,8 @@ object.} These methods use the state of their object to determine the action
 that
 should be taken, without requiring the objects which call that function to know
 about the state itself. Therefore, calling a method such as \texttt{pray()} on a human
-object should determine the way that it prays by these factors, without a caller needing to know all of the internal details.
+object should determine the way that it prays by these factors, without a caller 
+needing to know all of the internal details.
 \paragraph{}
 Now I've skipped over an important distinction to make, as I wanted to avoid
 confusing you up front. How do we create and address the objects in our system?
@@ -194,16 +205,29 @@ that class whereever it is deemed convenient. The actual implementation in
 this new class may do different things than the original, but it supports
 that behavior through the same mechanisms as the old instances.
 
-\setlength{\unitlength}{1cm}
-\begin{picture}(1, 1)
-\put(0, 0){\line(1, 0){4}}
-\put(2, 0){\oval(4, 2)[b]}
-\thicklines
-\put(5, 0){\vector(0, -1){2}}
-\put(5, 0){\vector(1, 0){2}}
-\thinlines
-\put(5, 0){\vector(2, -1){2}}
-\put(5, -2.5){$f(x) = -2x$}
-\end{picture}
+\section{Object Relationships}
+We have seen that classes of objects may declare inheritance-based relationships 
+to share code which they have in common, as well as be referenced by this common
+type. These inheritance (subtype) relationships are not the only ones we have
+available to use. Objects which are related by a common supertype are said to
+be related through an \textit{is-a} relationship; this means that they can both
+be considered to be of the ancestor class which they share. A car is a type of
+vehicle---therefore, in an object-based system, we might write a vehicle 
+interface which defines the behavior all should support. Imagine our interface
+has methods such as \texttt{move(int amount)} and \texttt{applyBrake()}. We would
+expect for both a bicycle and a car to be able to implement these methods, even
+if the method which they use to do it is not the same.
+\paragraph{}
+What about when objects do not have an is-a relationship? What other cases can
+objects be related by? Objects which have functionality but do not necessarily
+share a superclass with any other (that is to say that some objects may have
+functionality that is internal to their operation, but do not expose this 
+functionality as a feature of interacting with the object itself). In this case,
+an object may have an instance of that functionality, which is implemented by
+another class, as state of the object. Methods which are called on this object
+may use the functionality of this other object by \textit{delegating} operations 
+to its methods; we may call methods of another object as a side-effect of behavior
+of the receiver of that invocation. This is known as a \textit{has-a} relationship
+(because the object which delegates stores the other object in its state).
 
 \end{document}
